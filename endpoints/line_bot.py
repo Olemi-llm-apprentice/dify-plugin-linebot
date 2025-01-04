@@ -26,10 +26,22 @@ class LineBotEndpoint(Endpoint):
                     replyToken = data['events'][0]['replyToken']
                     # 受信メッセージ
                     messageText = data['events'][0]['message']['text']
+                    dify_response = self.session.app.chat.invoke(
+                            app_id=settings["app"]["app_id"],
+                            query=messageText,
+                            inputs={},
+                            response_mode="blocking",
+                        )
+                    # blocks[0]["elements"][0]["elements"][0]["text"] = dify_response.get("answer")
                     # メッセージを返信（受信メッセージをそのまま返す）
                     LINE_CHANNEL_ACCESS_TOKEN = settings.get("LINE_CHANNEL_ACCESS_TOKEN")
                     LINE_BOT_API = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
-                    LINE_BOT_API.reply_message(replyToken, TextSendMessage(text=messageText))
+                    LINE_BOT_API.reply_message(
+                        replyToken,
+                        TextSendMessage(
+                            text=dify_response.get("answer")
+                        )
+                    )
 
         # エラーが起きた場合
         except Exception as e:
