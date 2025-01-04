@@ -1,0 +1,50 @@
+version: 0.0.1
+type: plugin
+author: lemilemio
+name: line_bot
+label:
+  en_US: line_bot
+  ja_JP: line_bot
+  zh_Hans: line_bot
+  pt_BR: line_bot
+description:
+  en_US: linebot
+  ja_JP: linebot
+  zh_Hans: linebot
+  pt_BR: linebot
+icon: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+    model:
+      enabled: true
+      llm: true
+      text_embedding: false
+      rerank: false
+      tts: true
+      speech2text: true
+      moderation: false
+    endpoint:
+      enabled: true
+    app:
+      enabled: true
+    storage:
+      enabled: true
+      size: 1048576
+plugins:
+  endpoints:
+    - group/line_bot.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+created_at: 2025-01-04T20:45:57.456189013+09:00
+privacy: PRIVACY.md
+verified: false

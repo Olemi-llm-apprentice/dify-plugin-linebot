@@ -1,0 +1,6 @@
+path: "/"
+method: "POST"
+extra:
+  python:
+    source: "endpoints/line_bot.py"
+
